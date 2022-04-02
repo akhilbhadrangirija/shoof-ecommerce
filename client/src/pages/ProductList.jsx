@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import { mobile } from "../responsive";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
+import axios from 'axios'
 
 const Container = styled.div``;
 
@@ -43,6 +44,9 @@ const ProductList = () => {
    const cat =location.pathname.split("/")[2];
    const [filters,setFilters] =useState({});
    const [sort,setSort] =useState("newest");
+
+
+   
 
    const handleClick =(e)=>{
 

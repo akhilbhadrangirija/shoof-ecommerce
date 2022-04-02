@@ -68,19 +68,18 @@ router.get('/find/:id',async (req,res)=>{
 router.get('/',async (req,res)=>{
     const qNew =  req.query.new;
     const qCat =  req.query.category;
-
+    let product;
     try {
-        let products;
-        if(qnew){
-            products=await Products.find().sort({createdAt: -1}).limit(5);
-        }else if(qCat){
-            products=await Products.find({categories:{
+        if(qNew!==undefined){
+            product = await Products.find().sort({createdAt: -1}).limit(5);
+        }else if(qCat!==undefined){
+            product = await Products.find({categories:{
               $in:[qCat]  
             }});
         }else{
-            products=await Products.find();
+            product = await Products.find();
         }
-        res.status(200).json(products)
+        res.status(200).json(product)
     } catch (error) {
         res.status(500).json(error)
         
