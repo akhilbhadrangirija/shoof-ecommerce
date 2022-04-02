@@ -39,19 +39,19 @@ const Select = styled.select`
 const Option = styled.option``;
 
 const ProductList = () => {
-  // const location = useLocation();
-  //  const cat =location.pathname.split("/")[2];
-  //  const [filters,setFilters] =useState({});
-  //  const [sort,setSort] =useState("newest");
+  const location = useLocation();
+   const cat =location.pathname.split("/")[2];
+   const [filters,setFilters] =useState({});
+   const [sort,setSort] =useState("newest");
 
-  //  const handleClick =(e)=>{
+   const handleClick =(e)=>{
 
-  //   setFilters({
-  //     ...filters,
-  //     [e.target.name]:e.target.value,
-  //   })
+    setFilters({
+      ...filters,
+      [e.target.name]:e.target.value,
+    })
 
-  //  };
+   };
 
 
   return (
