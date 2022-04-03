@@ -43,7 +43,7 @@ const ProductList = () => {
   const location = useLocation();
    const cat =location.pathname.split("/")[2];
    const [filters,setFilters] =useState({});
-   const [sort,setSort] =useState("newest");
+  //  const [sort,setSort] =useState("newest");
 
 
    
@@ -62,7 +62,7 @@ const ProductList = () => {
     <Container>
       <Navbar />
       <Announcement />
-      <Title>Dresses</Title>
+      <Title>{cat ? cat : 'Products'}</Title>
       <FilterContainer>
         <Filter>
           <FilterText>Filter Products:</FilterText>
@@ -88,16 +88,16 @@ const ProductList = () => {
             <Option>XL</Option>
           </Select>
         </Filter>
-        <Filter>
+        {/* <Filter>
           <FilterText>Sort Products:</FilterText>
           <Select onChange={e=>{setSort(e.target.value)}}>
             <Option value="newest">Newest</Option>
             <Option value="asc">Price (asc)</Option>
             <Option value="desc">Price (desc)</Option>
           </Select>
-        </Filter>
+        </Filter> */}
       </FilterContainer>
-      <Products cat={cat} filters={filters} sort={sort}/>
+      <Products cat={cat} filters={filters} />
       <Newsletter />
       <Footer />
     </Container>
