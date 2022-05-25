@@ -4,18 +4,29 @@ import ProductList from "./pages/ProductList";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Cart from "./pages/Cart";
-import React from "react";
+import React,{useEffect} from "react";
 import {
   BrowserRouter as Router,
   Route,
   Routes,
-  Navigate 
+  Navigate,
+  useLocation 
 } from "react-router-dom";
+const ScrollToTop =()=> {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 const App = () => {
   const user = false;
 
   return (<Router>
+  <ScrollToTop />
   <Routes>
     <Route exact path="/" element={<Home/>}/>
     <Route exact path="/login" element={user ? <Home/>  : <Login/>} />
