@@ -17,7 +17,8 @@ const Products = ({cat,filters}) => {
   const [products,setProducts] = useState([]);
   const [filteredProducts,setFilteredProducts] = useState([]);
 
-  
+
+
 
 
   
@@ -51,6 +52,19 @@ const Products = ({cat,filters}) => {
     
   }, [filters,cat,products]);
 
+
+  useEffect(() => {
+    filters &&
+    setFilteredProducts(
+      products.filter((item) =>
+        Object.entries(filters).every(([key,value])=>
+        item[key].includes(value))
+      )
+    )
+  
+    
+  }, [filters,products]);
+
   
   
 
@@ -58,7 +72,9 @@ const Products = ({cat,filters}) => {
     <Container>
       {cat ? filteredProducts.map((item) => (
         <Product item={item} key={item._id} />
-      )) : products.map((item) => (
+      )) : filters ? filteredProducts.map((item) => (
+        <Product item={item} key={item._id} />
+      )) :  products.slice(0,4).map((item) => (
         <Product item={item} key={item._id} />
       ))}
     </Container>

@@ -55,13 +55,14 @@ const ProductList = () => {
       [e.target.name]:e.target.value,
     })
 
-   };
+   };   
+   
 
 
   return (
     <Container>
-      <Navbar />
       <Announcement />
+      <Navbar />
       <Title>{cat ? cat : 'Products'}</Title>
       <FilterContainer>
         <Filter>

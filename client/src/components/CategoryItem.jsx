@@ -7,6 +7,7 @@ const Container = styled.div`
   margin: 3px;
   height: 70vh;
   position: relative;
+  
 `;
 
 const Image = styled.img`
@@ -32,6 +33,8 @@ const Info = styled.div`
 const Title = styled.h1`
     color:white;
     margin-bottom: 20px;
+    
+    
 `;
 
 const Button = styled.button`
@@ -46,7 +49,7 @@ const Button = styled.button`
 const CategoryItem = ({ item }) => {
   return (
     <Container>
-    <Link to={`/productlist/:${item.cat}`}>
+    <Link to={`/products/${item.cat}`}>
       <Image src={item.img} />
       <Info>
         <Title>{item.title}</Title>

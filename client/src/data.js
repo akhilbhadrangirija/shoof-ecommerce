@@ -25,20 +25,20 @@ export const sliderItems = [
   export const categories = [
     {
       id: 1,
-      img: "https://images.pexels.com/photos/5886041/pexels-photo-5886041.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      img: "https://cdn.shopify.com/s/files/1/0752/6435/products/3_3f172c1a-9ce1-4bcd-bf2a-c6696522ce5e_765x.jpg?v=1624280971",
       title: "SHIRT STYLE!",
-      cat:"women"
+      cat:"shirt"
     },
     {
       id: 2,
-      img: "https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      title: "LOUNGEWEAR LOVE",
-      cat:"coats"
+      img: "https://adn.damensch.com/wp-content/uploads/2021/04/Website-Side-4.jpg",
+      title: "TEES!",
+      cat:"tees"
     },
     {
       id: 3,
-      img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-      title: "LIGHT JACKETS",
+      img: "https://mllh387pqimv.i.optimole.com/NekEqE0.Lx-a~16710/w:auto/h:auto/q:mauto/https://www.creaturesofhabit.in/wp-content/uploads/2020/02/190929-COH-0481-2.jpg",
+      title: "TROUSERS",
       cat:"jeans"
     },
   ];

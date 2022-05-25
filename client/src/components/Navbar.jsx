@@ -3,6 +3,7 @@ import { Search, ShoppingCartOutlined } from "@mui/icons-material";
 import React from "react";
 import styled from "styled-components";
 import { mobile } from "../responsive";
+import { Outlet, Link } from "react-router-dom";
 
 const Container = styled.div`
   height: 60px;
@@ -63,10 +64,12 @@ const MenuItem = styled.div`
   font-size: 14px;
   cursor: pointer;
   margin-left: 25px;
+  text-decoration:none;
   ${mobile({ fontSize: "12px", marginLeft: "10px" })}
 `;
 
 const Navbar = () => {
+  const user = true;
   return (
     <Container>
       <Wrapper>
@@ -78,14 +81,23 @@ const Navbar = () => {
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>Shoof.</Logo>
+        <Link to="/" style={{ textDecoration: 'none',color:'black'}}><Logo>Shoof.</Logo></Link>
+          
         </Center>
         <Right>
-          <MenuItem>REGISTER</MenuItem>
-          <MenuItem>SIGN IN</MenuItem>
+        {user ? <MenuItem><Link to="/login" style={{ textDecoration: 'none',color:'black'}}>SIGN OUT</Link></MenuItem> : <MenuItem>
+          <Link to="/login" style={{ textDecoration: 'none',color:'black'}}>SIGN IN</Link>
+          </MenuItem> }
+          {/* <MenuItem>
+          <Link to="/register">REGISTER</Link>
+         </MenuItem>
+          <MenuItem>
+          <Link to="/login">SIGN IN</Link>
+          </MenuItem> */}
+
           <MenuItem>
             <Badge badgeContent={4} color="primary">
-              <ShoppingCartOutlined />
+            <Link to="/cart" style={{ textDecoration: 'none',color:'black'}}><ShoppingCartOutlined /></Link>  
             </Badge>
           </MenuItem>
         </Right>
