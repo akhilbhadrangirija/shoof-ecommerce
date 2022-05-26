@@ -144,6 +144,7 @@ const Product = () => {
       addProduct({...product,quantity,color,size})
 
     )
+    // console.log(product)
     
   }
 
