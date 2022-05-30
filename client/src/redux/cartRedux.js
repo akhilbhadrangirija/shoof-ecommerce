@@ -16,10 +16,17 @@ const cartSlice = createSlice({
             state.products.push(action.payload);
             state.totalPrice +=action.payload.price * action.payload.quantity;
         },
-        // addQuantity:(state,action)=>{
-        //     state.products.quantity
-        // }
+        addQuantity:(state,action)=>{
+            state.products.map((product)=>{
+                
+                if(product._id===action.payload._id){
+ 
+                    product.quantity+=action.payload.quantity;
+                }
+            });
+            state.totalPrice +=action.payload.price * action.payload.quantity;
+        }
     },
 })
-export const {addProduct} = cartSlice.actions;
+export const {addProduct,addQuantity} = cartSlice.actions;
 export default cartSlice.reducer;

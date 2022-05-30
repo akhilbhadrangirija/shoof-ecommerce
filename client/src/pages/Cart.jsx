@@ -1,10 +1,11 @@
 import { Add, Remove } from "@mui/icons-material";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { mobile } from "../responsive";
+import { addQuantity } from "../redux/cartRedux";
 
 const Container = styled.div``;
 
@@ -157,15 +158,9 @@ const Button = styled.button`
 const Cart = () => {
 
   const cart = useSelector(state=>state.cart);
-  const handleQuantity=(e)=>{
-   console.log(e.target.value)
-  //  dispatch(
-  //   // addProduct({ product:product,quantity:quantity,price:product.price * quantity})
-  //   addProduct({...product,quantity,color,size})
-
-  // )
-  }
   // console.log(cart)
+  const dispatch = useDispatch()
+  
   return (
     <Container>
       <Navbar />
@@ -202,9 +197,9 @@ const Cart = () => {
               </ProductDetail>
               <PriceDetail>
                 <ProductAmountContainer>
-                  <Add  onClick={(e)=>handleQuantity(e)} />
+                  <Add  onClick={()=>dispatch((addQuantity({...product,quantity:+1})))} />
                   <ProductAmount>{product.quantity}</ProductAmount>
-                  <Remove onClick={(e)=>handleQuantity(e)} />
+                  <Remove onClick={()=>dispatch((addQuantity({...product,quantity:-1})))} />
                 </ProductAmountContainer>
                 <ProductPrice>Rs {product.price * product.quantity} </ProductPrice>
               </PriceDetail>
