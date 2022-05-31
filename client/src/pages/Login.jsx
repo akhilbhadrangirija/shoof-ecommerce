@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import {mobile} from "../responsive";
-import { Outlet, Link } from "react-router-dom";
+import {  Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import {login} from '../redux/apiCalls'
 
 
 const Container = styled.div`
@@ -50,6 +53,10 @@ const Button = styled.button`
   color: white;
   cursor: pointer;
   margin-bottom: 10px;
+  &:disabled{
+    color: green;
+    cursor:not-allowed;
+  }
 `;
 
 const Linka = styled.a`
@@ -58,17 +65,32 @@ const Linka = styled.a`
   text-decoration: underline;
   cursor: pointer;
 `;
+const Error = styled.span`
+color:red;
+`;
 
 const Login = () => {
+  const [username,SetUsername]=useState('');
+  const [password,setPassword]=useState('')
+  const dispatch = useDispatch()
+  const {isFetching,error}=useSelector(state=>state.user)
+  
+
+  const handleClick =(e)=>{
+    e.preventDefault();
+    login(dispatch,{username,password})
+  }
+
   return (
     <Container>
       <Wrapper>
         <Title>SIGN IN</Title>
         <Form>
-          <Input placeholder="username" />
-          <Input placeholder="password" />
-          <Button>LOGIN</Button>
-          <Linka>DO NOT YOU REMEMBER THE PASSWORD?</Linka>
+          <Input onChange={(e)=>SetUsername(e.target.value)}  placeholder="username" />
+          <Input onChange={(e)=>setPassword(e.target.value)} type="password" placeholder="password" />
+          <Button onClick={handleClick} disabled={isFetching}>LOGIN</Button>
+          {error && <Error>Something went wrong</Error> }
+          <Linka>DON'T YOU REMEMBER THE PASSWORD?</Linka>
           <Link to="/register">CREATE A NEW ACCOUNT</Link>
           {/* <Link></Link> */}
         </Form>

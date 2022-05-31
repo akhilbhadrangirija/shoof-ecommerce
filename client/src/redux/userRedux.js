@@ -1,23 +1,29 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-
+// const iniialValue={name:"",username:"",oredrs:[]};
 
 const userSlice = createSlice({
     name:"user",
     initialState:{
-        
+        currentUser:null,
+        isFetching:false,
+        error:false,
         
     },
     reducers:{
-        addProduct:(state,action)=>{
-            state.quantity +=1;
-            state.products.push(action.payload);
-            state.totalPrice +=action.payload.price * action.payload.quantity;
+        loginStart:(state)=>{
+            state.isFetching=true;
+
         },
-        // addQuantity:(state,action)=>{
-        //     state.products.quantity
-        // }
+        loginSucess:(state,action)=>{
+            state.isFetching=false;
+            state.currentUser=action.payload            
+        },
+        loginFailure:(state)=>{
+            state.isFetching=false;
+            state.error=true
+        }
     },
 })
-export const {addProduct} = userSlice.actions;
+export const {loginStart,loginSucess,loginFailure} = userSlice.actions;
 export default userSlice.reducer;
