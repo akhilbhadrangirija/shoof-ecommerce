@@ -28,7 +28,7 @@ app.use('/api/payment',paymentRoute);
 
 ///Database
 
-mongoose.connect(`mongodb+srv://akhil:${process.env.DBKEY}@ecommerce.1mekl.mongodb.net/shop?retryWrites=true&w=majority`,{
+mongoose.connect(`mongodb+srv://akhil-mac:${process.env.DBKEY}@ecommerce.1mekl.mongodb.net/shop?retryWrites=true&w=majority`,{
     useNewUrlParser: true,
         useUnifiedTopology: true
 })

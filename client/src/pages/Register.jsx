@@ -1,4 +1,7 @@
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { register } from "../redux/apiCalls";
 import { mobile } from "../responsive";
 
 const Container = styled.div`
@@ -55,22 +58,39 @@ const Button = styled.button`
 `;
 
 const Register = () => {
+
+
+  const [name,setName]=useState('');
+  const [lastName,setLastName]=useState('');
+  const [username,SetUsername]=useState('');
+  const [email,setEmail]=useState('');
+  const [password,setPassword]=useState('');
+
+  const dispatch = useDispatch()
+  const {isFetching,error}=useSelector(state=>state.user)
+
+
+  const handleClick=(e)=>{
+    let isAdmin=false;
+    e.preventDefault()
+    register(dispatch,{username,email,password,isAdmin})
+  }
   return (
     <Container>
       <Wrapper>
         <Title>CREATE AN ACCOUNT</Title>
         <Form>
-          <Input placeholder="name" />
-          <Input placeholder="last name" />
-          <Input placeholder="username" />
-          <Input placeholder="email" />
-          <Input placeholder="password" />
-          <Input placeholder="confirm password" />
+          <Input placeholder="name" onChange={(e)=>setName(e.target.value)} />
+          <Input placeholder="last name" onChange={(e)=>setLastName(e.target.value)}/>
+          <Input placeholder="username" onChange={(e)=>SetUsername(e.target.value)} />
+          <Input placeholder="email" onChange={(e)=>setEmail(e.target.value)}/>
+          <Input placeholder="password" onChange={(e)=>setPassword(e.target.value)}/>
+          <Input placeholder="confirm password" onChange={(e)=>setPassword(e.target.value)}/>
           <Agreement>
             By creating an account, I consent to the processing of my personal
             data in accordance with the <b>PRIVACY POLICY</b>
           </Agreement>
-          <Button>CREATE</Button>
+          <Button onClick={handleClick} disabled={isFetching}>CREATE</Button>
         </Form>
       </Wrapper>
     </Container>
