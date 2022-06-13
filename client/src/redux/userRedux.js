@@ -16,7 +16,7 @@ const userSlice = createSlice({
             state.currentUser=action.payload
 
         },
-        registerFail:(state,action)=>{
+        registerFail:(state)=>{
             state.isFetching=false;
             state.error=true
 

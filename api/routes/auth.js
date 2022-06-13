@@ -11,7 +11,6 @@ var CryptoJS = require("crypto-js");
 
 router.post('/register',async(req,res)=>{
 
-    console.log("register call rec")
   
     const newUser = new Users ({
         username:req.body.username,
@@ -20,8 +19,7 @@ router.post('/register',async(req,res)=>{
     })
     try {
         const savedUser=await newUser.save();
-        res.status(200).json(savedUser);
-        console.log("newuser created")
+        // res.status(200).json(savedUser);
         console.log(savedUser)
 
         //acess token for registered user
@@ -44,7 +42,6 @@ router.post('/register',async(req,res)=>{
 
 router.post('/login',async(req,res)=>{
     try {
-        console.log("login started")
         const user = await  Users.findOne({username:req.body.username})
         !user && res.status(401).json("Wrong credentials")
         var bytes  = CryptoJS.AES.decrypt(user.password, process.env.SECRETKEY);
@@ -54,11 +51,12 @@ router.post('/login',async(req,res)=>{
 
         const acessToken =jwt.sign({id:user._id,isAdmin:user.isAdmin},process.env.JWT_KEY,{expiresIn:"3d"})
 
+
         const {password,...others}=user._doc;
  
         res.status(200).json({...others,acessToken})
     } catch (error) {
-        
+        console.log(error)
     }
 })
 

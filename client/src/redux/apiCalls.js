@@ -4,11 +4,9 @@ import {publicRequest} from '../requestMethods'
 
 
 export const login = async(dispatch,user)=>{
-    console.log("Log in")
 
     dispatch((loginStart()));
     try {
-        console.log("Log in")
         const res =await publicRequest.post('/auth/login',user)
         dispatch((loginSucess(res.data)));
         
@@ -19,8 +17,6 @@ export const login = async(dispatch,user)=>{
     
 }
 export const register = async(dispatch,user)=>{
-    console.log("register")
-    console.log(user)
 
 
     try{
